@@ -1,1 +1,0 @@
-/home/omri/apf_control_ws/src/apf_description/launch/apfbot_gazebo.launch.py

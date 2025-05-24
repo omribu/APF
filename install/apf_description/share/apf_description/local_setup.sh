@@ -1,1 +1,0 @@
-/home/omri/apf_control_ws/build/apf_description/ament_cmake_environment_hooks/local_setup.sh

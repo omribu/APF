@@ -1,5 +1,5 @@
-apf_control_ws/build/
-apf_control_ws/log/
-apf_control_ws/install/
-apf_control_ws/.vscode/
-apf_control_ws/src/.vscode/
+build/
+log/
+install/
+.vscode/
+src/.vscode/

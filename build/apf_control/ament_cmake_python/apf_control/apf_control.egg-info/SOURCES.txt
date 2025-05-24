@@ -1,8 +1,0 @@
-setup.py
-apf_control/__init__.py
-apf_control/apf_controller.py
-apf_control/robot_plotter.py
-apf_control.egg-info/PKG-INFO
-apf_control.egg-info/SOURCES.txt
-apf_control.egg-info/dependency_links.txt
-apf_control.egg-info/top_level.txt

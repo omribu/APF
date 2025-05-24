@@ -1,1 +1,0 @@
-/home/omri/apf_control_ws/build/apf_control/ament_cmake_environment_hooks/pythonpath.sh
