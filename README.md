@@ -6,3 +6,9 @@ Artifical potential field is a method for robot path planning that usually used 
   <img src="https://github.com/user-attachments/assets/b6af4caf-566b-428c-9ec4-d60ee4d98421" alt="equation0" width="30%" />
 </p>
 
+
+In this project we simulated a differential drive robot with a Lidar sensor on Gazebo and visualizing on rviz as well.
+
+
+
+
