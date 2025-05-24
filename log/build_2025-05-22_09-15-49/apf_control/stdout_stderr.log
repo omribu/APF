@@ -1,0 +1,87 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+-- Found std_msgs: 4.8.0 (/opt/ros/humble/share/std_msgs/cmake)
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found geometry_msgs: 4.8.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+-- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found nav_msgs: 4.8.0 (/opt/ros/humble/share/nav_msgs/cmake)
+-- Found tf2_ros: 0.25.12 (/opt/ros/humble/share/tf2_ros/cmake)
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found apf_description: 0.0.0 (/home/omri/apf_control_ws/install/apf_description/share/apf_description/cmake)
+-- Found ament_lint_auto: 0.12.12 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/omri/apf_control_ws/build/apf_control
+Built target ament_cmake_python_symlink_apf_control
+running egg_info
+creating apf_control.egg-info
+writing apf_control.egg-info/PKG-INFO
+writing dependency_links to apf_control.egg-info/dependency_links.txt
+writing top-level names to apf_control.egg-info/top_level.txt
+writing manifest file 'apf_control.egg-info/SOURCES.txt'
+reading manifest file 'apf_control.egg-info/SOURCES.txt'
+writing manifest file 'apf_control.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_apf_control_egg
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/pythonpath.sh
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/pythonpath.dsv
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control-0.0.0-py3.10.egg-info/PKG-INFO
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control-0.0.0-py3.10.egg-info/SOURCES.txt
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control-0.0.0-py3.10.egg-info/dependency_links.txt
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control-0.0.0-py3.10.egg-info/top_level.txt
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control/__init__.py
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control/apf_controller.py
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/config/apf.yaml
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/config/apf_controllers.yaml
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/launch/apf.launch.py
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/lib/apf_control/apf_controller.py
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/ament_index/resource_index/package_run_dependencies/apf_control
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/ament_index/resource_index/parent_prefix_path/apf_control
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/ament_prefix_path.sh
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/ament_prefix_path.dsv
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/path.sh
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/environment/path.dsv
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/local_setup.bash
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/local_setup.sh
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/local_setup.zsh
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/local_setup.dsv
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/package.dsv
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/ament_index/resource_index/packages/apf_control
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/cmake/apf_controlConfig.cmake
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/cmake/apf_controlConfig-version.cmake
+-- Symlinking: /home/omri/apf_control_ws/install/apf_control/share/apf_control/package.xml
+Listing '/home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control'...
+Compiling '/home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control/__init__.py'...
+Compiling '/home/omri/apf_control_ws/install/apf_control/local/lib/python3.10/dist-packages/apf_control/apf_controller.py'...

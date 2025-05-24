@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<robot name="apfbot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <gazebo reference="wheel_left_link">
+        <mu1>100000000000000.0</mu1>
+        <mu2>100000000000000.0</mu2>
+        <kp>1000000000000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>0.1</maxVel>
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+    <gazebo reference="wheel_right_link">
+        <mu1>100000000000000.0</mu1>
+        <mu2>100000000000000.0</mu2>
+        <kp>1000000000000.0</kp>
+        <kd>10.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>0.1</maxVel>
+        <fdir1>1 0 0</fdir1>
+    </gazebo>
+
+        <!-- Caster Wheels -->
+    <gazebo reference="caster_front_link">
+        <mu1>0.1</mu1>
+        <mu2>0.1</mu2>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>0.1</maxVel>
+    </gazebo>
+
+    <gazebo reference="caster_rear_link">
+        <mu1>0.1</mu1>
+        <mu2>0.1</mu2>
+        <kp>1000000.0</kp>
+        <kd>100.0</kd>
+        <minDepth>0.001</minDepth>
+        <maxVel>0.1</maxVel>
+    </gazebo>
+
+
+    <!-- Colors Gazebo -->
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="wheel_left_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>   
+
+    <gazebo reference="wheel_right_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>   
+
+
+    <!--  ROS2 control  -->
+    <gazebo>
+            <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                <parameters>$(find apf_control)/config/apf_controllers.yaml</parameters>
+            </plugin>
+            <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
+				<render_engine>ogre2</render_engine>
+			</plugin>		
+    </gazebo>
+
+
+    <!-- configure LIDAR -->
+    <gazebo reference="lidar_link">
+		<sensor name="lidar" type='gpu_lidar'>
+			<pose>0 0 0.1 0 0 0</pose>
+            <topic>lidar</topic>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>640</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-1.396263</min_angle>
+                        <max_angle>1.396263</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>16</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-0.261799</min_angle>
+                        <max_angle>0.261799</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <!-- <min>0.08</min> -->
+                    <min>0.1</min>
+                    <max>10.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+            </ray>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+			<gz_frame_id>lidar_link</gz_frame_id>	
+		</sensor>
+	</gazebo>
+
+
+</robot>
