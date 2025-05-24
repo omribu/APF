@@ -8,7 +8,7 @@ Artifical potential field is a method for robot path planning that usually used 
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9829359f-6ab9-4a8a-8f76-0c6425cd11f9" alt="equation1" width="40%" />
+  <img src="https://github.com/user-attachments/assets/9829359f-6ab9-4a8a-8f76-0c6425cd11f9" alt="equation1" width="60%" />
 </p>
 
 
