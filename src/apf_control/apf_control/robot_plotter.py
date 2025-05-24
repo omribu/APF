@@ -14,14 +14,13 @@ class RobotPlotter:
         """
         fig = plt.figure(figsize=(12, 10))
         
-        # 3D Configuration Space Plot
         ax1 = fig.add_subplot(221, projection='3d')
         
         # Plot trajectory with color gradient based on time
         scatter = ax1.scatter(x_history, y_history, theta_history, 
                              c=time_history, cmap='viridis', s=20, alpha=0.7)
         
-        # Also plot the trajectory line
+        # plot the trajectory line
         ax1.plot(x_history, y_history, theta_history, 
                 color='red', linewidth=1.5, alpha=0.8)
         
@@ -37,7 +36,6 @@ class RobotPlotter:
         ax1.set_title('Configuration Space (C-Space)\n3D Robot Trajectory')
         ax1.legend()
         
-        # Add colorbar
         plt.colorbar(scatter, ax=ax1, shrink=0.8, label='Time (s)')
         
         # 2D Configuration projections
@@ -88,7 +86,7 @@ class RobotPlotter:
         if len(theta_history) > 1:
             dt = np.diff(time_history)
             dtheta = np.diff(theta_history)
-            # Handle angle wrap-around
+
             dtheta = np.array([self.normalize_angle(angle) for angle in dtheta])
             angular_velocity = dtheta / dt
             
@@ -98,11 +96,11 @@ class RobotPlotter:
             ax2.set_title('Robot Angular Velocity vs Time')
             ax2.grid(True, alpha=0.3)
         
-        # Position trajectory with orientation arrows
+        # Position trajectory with orientation 
         ax3.plot(x_history, y_history, 'b-', linewidth=2, alpha=0.7, label='Trajectory')
         
-        # Add orientation arrows at regular intervals
-        step = max(1, len(x_history) // 15)  # Show ~15 arrows
+        # Add orientation arrows
+        step = max(1, len(x_history) // 15)  
         for i in range(0, len(x_history), step):
             x, y, theta = x_history[i], y_history[i], theta_history[i]
             dx = 0.1 * np.cos(theta)
@@ -166,7 +164,7 @@ class RobotPlotter:
         cb = plt.colorbar(ax2.collections[0], ax=ax2)
         cb.set_label('Speed (m/s)')
         
-        # Acceleration (if enough points)
+        # Acceleration 
         if len(time_history) > 2:
             dt2 = dt[1:]
             dvx = np.diff(vx)
@@ -184,7 +182,7 @@ class RobotPlotter:
             ax3.grid(True, alpha=0.3)
             ax3.legend()
         
-        # Distance traveled
+        # Distance
         distances = np.sqrt(dx**2 + dy**2)
         cumulative_distance = np.cumsum(distances)
         
@@ -212,16 +210,16 @@ class RobotPlotter:
         """
         print("Generating complete robot trajectory analysis...")
         
-        # 1. Configuration Space Analysis
+        # 1. Configuration Space 
         self.plot_configuration_space_3d(x_history, y_history, theta_history, time_history)
         
-        # 2. Orientation Analysis
+        # 2. Orientation 
         self.plot_orientation_analysis(time_history, theta_history, x_history, y_history)
         
-        # 3. Velocity Analysis
+        # 3. Velocity 
         self.plot_velocity_analysis(time_history, x_history, y_history)
         
-        # 4. Goal and Distance Analysis (if data available)
+        # 4. Goal and Distance 
         if goal is not None:
             self.plot_goal_analysis(time_history, x_history, y_history, goal, obstacles_dist)
     
@@ -254,9 +252,8 @@ class RobotPlotter:
         ax2.legend()
         ax2.axis('equal')
         
-        # Obstacle distances (if available)
+        # Obstacle distances 
         if obstacles_dist is not None and len(obstacles_dist) > 0:
-            # Ensure we have matching time data
             time_obs = time_history[:len(obstacles_dist)]
             ax3.plot(time_obs, obstacles_dist, 'red', linewidth=2)
             ax3.axhline(y=0.3, color='orange', linestyle='--', label='Safety Threshold')
@@ -266,7 +263,6 @@ class RobotPlotter:
             ax3.grid(True, alpha=0.3)
             ax3.legend()
         
-        # Performance metrics
         final_distance = goal_distances[-1]
         total_time = time_history[-1] - time_history[0]
         path_length = sum(np.sqrt((x_history[i+1] - x_history[i])**2 + 
@@ -294,7 +290,6 @@ class RobotPlotter:
         plt.tight_layout()
         plt.show()
 
-# Usage example for your APF controller:
 def plot_robot_data(controller_instance):
     """
     Function to call from your APF_controller class

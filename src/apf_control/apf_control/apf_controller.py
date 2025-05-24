@@ -44,7 +44,6 @@ class APF_controller(Node):
         self.max_linear_vel = self.get_parameter('max_linear_vel').value
         self.goal = np.array(self.get_parameter('goal').value)
         self.get_logger().info(f'goal: {self.goal}')
-        self.add_on_set_parameters_callback(self.parameter_callback)
 
 
         # Subscribers
@@ -107,7 +106,7 @@ class APF_controller(Node):
         angle_increment = self.lidar_data.angle_increment
 
         for i, distance in enumerate(self.lidar_data.ranges):
-            if distance < self.repulsion_radius and distance > 0.1:  # Avoid division by zero
+            if distance < self.repulsion_radius and distance > 0.1:  
                 angle = angle_min + i * angle_increment + self.robot_orientation  # Transform to world frame
             
                 # Calculate obstacle position in world frame
@@ -122,16 +121,7 @@ class APF_controller(Node):
                     force += self.eta * (1.0/distance - 1.0/self.repulsion_radius) * (1.0/(distance**2)) * (direction/direction_norm)
     
         return force
-        
-        # for i, distance in enumerate(self.lidar_data.ranges):
-        #     if distance < self.repulsion_radius:
-        #         angle = angle_min + i * angle_increment
-        #         obstacle_pos = np.array([distance * np.cos(angle), distance * np.sin(angle)])
-        #         force += self.eta * (1.0 / distance - 1.0 / self.repulsion_radius) * (1.0 / (distance ** 2)) * (self.robot_position - obstacle_pos)/ np.linalg.norm(self.robot_position - obstacle_pos)
-        
-        # return force
     
-
     def get_dist_from_obstacles(self):
         if self.lidar_data is None:
             return 0
@@ -147,8 +137,6 @@ class APF_controller(Node):
 
 
     def control_loop(self):
-
-        # self.time_ = self.get_clock().now()
 
         marker = Marker()
         marker.header.frame_id = "odom"
@@ -173,7 +161,6 @@ class APF_controller(Node):
         marker.color.b = 0.0
 
 
-
         attractive = self.attractive_potential()
         repulsive = self.repulsive_potential()
         resultant_force = attractive + repulsive
@@ -192,7 +179,6 @@ class APF_controller(Node):
         linear_error = math.sqrt(resultant_force[0]*resultant_force[0] + resultant_force[1]*resultant_force[1])
         target_dist = math.sqrt((self.goal[0] - self.robot_position[0])**2 + (self.goal[1] - self.robot_position[1])**2)
         
-        # self.dist.append( min(self.lidar_data.ranges))
 
         dist = self.get_dist_from_obstacles()
         if dist == 0: 
@@ -214,11 +200,6 @@ class APF_controller(Node):
 
         elif( target_dist > 0.05): 
 
-            # Move first the orientation if the linear error is too large
-            # if( angular_error < 0.2):
-            #     velocity.twist.linear.x = linear_error * self.max_linear_vel
-            # else:
-            #     velocity.twist.linear.x = 0.0
             if abs(angular_error) < 0.5:  # About 28 degrees
                 velocity.twist.linear.x = min(linear_error * self.max_linear_vel, self.max_linear_vel)
             else:
@@ -229,7 +210,6 @@ class APF_controller(Node):
             velocity.twist.linear.x = 0.0
             velocity.twist.angular.z = 0.0
             
-
             print("Goal reached! Generating comprehensive analysis...")
             
             plotter = RobotPlotter()
@@ -247,34 +227,10 @@ class APF_controller(Node):
             else:
                 print("Not enough data points for analysis")
 
-            # fig = plt.figure(1)
-            # ax = fig.add_subplot(111, projection='3d'
-            #                      )
-            # ax.plot(self.x_position_history, self.y_position_history, self.orientation_history, color='red', linewidth=2.0)
-
-            # # Adding titles and labels
-            # ax.set_xlabel('X')
-            # ax.set_ylabel('Y')
-            # ax.set_zlabel('Theta')
-            # ax.set_title('Robot Configuration Space')
-            
-            # # # Display the plot
-            # plt.show()
-            
-            
-            # plt.figure(2)
-            # plt.plot(self.time_history ,self.x_position_history , color='blue', linewidth=2.0)
-            # plt.title('Robot X Coordinate Over Time')
-            # plt.xlabel('Time (sec)')
-            # plt.ylabel('X (m)')
-
-            # # Display the plot
-            # plt.show()
-
-
         self.publisher_.publish(velocity)
         # Publish Goal marker
         self.publisher.publish(marker)
+
 
     def generate_plots(self):
         """Generate plots on demand"""
@@ -291,22 +247,6 @@ class APF_controller(Node):
         else:
             self.get_logger().info("Not enough data points for analysis")
 
-    def parameter_callback(self, params):
-        for param in params:
-            if param.name == 'kp':
-                self.kp = param.value
-            elif param.name == 'eta':
-                self.eta = param.value
-            elif param.name == 'repulsion_radius':
-                self.repulsion_radius = param.value        
-            elif param.name == 'max_linear_vel':
-                self.max_linear_vel = param.value
-            elif param.name == 'goal':
-                self.goal = np.array(param.value)
-
-        self.get_logger().info(f'kp: {self.kp}, eta: {self.eta}, repulsion_radius: {self.repulsion_radius}, max_linear_vel: {self.max_linear_vel}, goal: {self.goal}')
-
-        return SetParametersResult(successful=True)
 
 def main(args=None):
     rclpy.init(args=args)
